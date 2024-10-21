@@ -36,6 +36,8 @@ if [[ $(sw_vers -productVersion | awk -F '.' '{print $1}') -ge 11 && $(uname -m)
     git clone https://github.com/ringsce/kings.git
     git clone https://github.com/ringsce/kreatyveBot.git
     git clone https://github.com/ringsce/kayte-lang.git
+    git clone https://github.com/ringsce/ekron-realms.git
+
 
     echo "All repositories cloned successfully in $INSTALL_DIR"
 else
