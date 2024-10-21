@@ -5,7 +5,7 @@ This CLI script is designed to install and set up the Rings Engine and Kings fra
 ## Features
 - **macOS 11+ and Apple Silicon Support:** Automatically detects whether the system meets the requirements.
 - **Xcode and Command Line Tools Check:** Ensures that Xcode and its CLI tools are installed, prompting installation if missing.
-- **Clone Repositories:** Downloads and installs the `kings`, `kreatyveBot`, and `kayte-lang` projects.
+- **Clone Repositories:** Downloads and installs the `kings`, `kreatyveBot`, and `kayte-lang` ` ekron realms` projects.
 
 ## Prerequisites
 - macOS 11 or higher
