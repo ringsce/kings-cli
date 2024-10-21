@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Check if macOS version is 11 or higher and if running on Apple Silicon
+if [[ $(sw_vers -productVersion | awk -F '.' '{print $1}') -ge 11 && $(uname -m) == 'arm64' ]]; then
+    echo "Running on macOS 11 or higher and Apple Silicon"
+
+    # Check if Xcode is installed
+    if ! xcode-select -p &> /dev/null; then
+        echo "Xcode is not installed. Please install Xcode from the App Store."
+        exit 1
+    else
+        echo "Xcode is installed."
+    fi
+
+    # Check if Xcode Command Line Tools are installed
+    if ! xcodebuild -version &> /dev/null; then
+        echo "Xcode Command Line Tools are not installed. Installing them..."
+        xcode-select --install
+        exit 1
+    else
+        echo "Xcode Command Line Tools are installed."
+    fi
+
+    # Create the target directory if it doesn't exist
+    INSTALL_DIR="/opt/local/rings"
+    if [[ ! -d $INSTALL_DIR ]]; then
+        echo "Creating directory $INSTALL_DIR"
+        sudo mkdir -p $INSTALL_DIR
+        sudo chown -R $(whoami) $INSTALL_DIR
+    fi
+
+    # Clone the repositories into the directory
+    cd $INSTALL_DIR
+    echo "Cloning repositories..."
+
+    git clone https://github.com/ringsce/kings.git
+    git clone https://github.com/ringsce/kreatyveBot.git
+    git clone https://github.com/ringsce/kayte-lang.git
+
+    echo "All repositories cloned successfully in $INSTALL_DIR"
+else
+    echo "This script requires macOS 11 or higher and an Apple Silicon Mac."
+    exit 1
+fi
